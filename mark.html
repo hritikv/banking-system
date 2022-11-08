@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .main {
+        text-align: center;
+        margin-top: 200px;
+      }
+      input {
+        width: 300px;
+        margin: 8px;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #00374d4d;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+      button {
+        padding: 7px;
+        width: 100px;
+        /* padding: inherit; */
+        border-radius: 15px;
+        background: #004a80c2;
+        border-color: #004a80c2;
+        color: white;
+      }
+
+      .main-div {
+        text-transform: uppercase;
+        /* color:#5c2da8; */
+        font-weight: bold;
+        font-size: large;
+        margin-top: 5px;
+      }
+      label{
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+      </style>
+  </head>
+  <body>
+
+    <div class="main">
+      <h2 style="color: #00374d">REPORT CARD</h2>
+      <label>name :</label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        placeholder="enter your name"
+      /><br />
+      <label>hindi : </label>
+      <input type="text" id="hindi" placeholder="enter Hindi marks" /><br />
+      <label>engish :</label>
+      <input type="text" id="english" placeholder="enter English marks" /><br />
+      <label>maths :</label>
+      <input type="text" id="maths" placeholder="enter Maths maths" /><br />
+      <button onclick="submit()">Submit</button><br /><br />
+      <div id="res" class="main-div"></div>
+      <div id="names" class="main-div"></div>
+      <br />
+      <div id="hindis" class="main-div"></div>
+      <br />
+      <div id="eng" class="main-div"></div>
+      <br />
+      <div id="math" class="main-div"></div>
+      <br />
+      <div id="total" class="main-div"></div>
+      <br />
+      <div id="per" class="main-div"></div>
+      <br />
+      </div>>
+    <script>
+      
+      function submit() {
+        let name = document.getElementById("name").value;
+        let hindi = document.getElementById("hindi").value;
+        let english = document.getElementById("english").value;
+        let maths = document.getElementById("maths").value;
+
+        let total = +hindi + +english + +maths;
+        let percentage = total / 3;
+
+      
+      if (hindi < 0 || hindi > 100) {
+        document.getElementById("total").innerHTML="please enter english marks between 1 to 100" + "<br>";
+      }
+      if (english < 0 || english > 100) {
+        document.getElementById("total").innerHTML="please enter english marks between 1 to 100" + "<br>";
+      }
+      if (maths < 0 || maths > 100) {
+        document.getElementById("total").innerHTML="please enter english marks between 1 to 100" + "<br>";
+      }
+        else {
+          document.getElementById("names").innerHTML = "name=" + name;
+          document.getElementById("hindis").innerHTML = "hindi marks=" + hindi;
+          document.getElementById("eng").innerHTML = "english marks=" + english;
+          document.getElementById("math").innerHTML = "maths marks=" + maths;
+    }
+        if(percentage >= 75) {
+        document.getElementById("total").innerHTML="pass with distinction";
+      } else if (
+        percentage > 50 && percentage < 75
+      ) {
+        document.getElementById("total").innerHTML="pass with second division";
+      } else if (
+        percentage >= 33 &&
+        percentage <= 50
+      ) {
+        document.getElementById("total").innerHTML= +total +"pass" + "<br>";
+      } else {
+       document.getElementById("total").innerHTML="fail"
+      }}
+    </script>
+  </body>
+</html>

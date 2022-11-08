@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .main {
+        text-align: center;
+        margin-top: 200px;
+      }
+      input {
+        width: 300px;
+        margin: 8px;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #00374d4d;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+      button {
+        padding: 7px;
+        width: 100px;
+        /* padding: inherit; */
+        border-radius: 15px;
+        background: #004a80c2;
+        border-color: #004a80c2;
+        color: white;
+      }
+
+      .main-div {
+        text-transform: uppercase;
+        /* color:#5c2da8; */
+        font-weight: bold;
+        font-size: large;
+        margin-top: 5px;
+      }
+      label{
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      table,tr,td,th{
+        /* align:center; */
+        text-align:center;
+        border: 1px solid black;
+  border-collapse: collapse;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <h2 style="color: #00374d">REPORT CARD</h2>
+      <label>name :</label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        placeholder="enter your name"
+      /><br />
+      <label>hindi : </label>
+      <input type="text" id="hindi" placeholder="enter Hindi marks" /><br />
+      <label>engish :</label>
+      <input type="text" id="eng" placeholder="enter English marks" /><br />
+      <label>maths :</label>
+      <input type="text" id="math" placeholder="enter Maths maths" /><br />
+      <button onclick="submit()">Submit</button><br /><br />
+      <table align="center">
+        <thead style="text-transform: uppercase;padding: 10px;">
+            <tr>
+                <th>name</th>
+                <th>hindi</th>
+                <th>english</th>
+                <th>maths</th>
+                <th>total</th>
+                <th>percentage</th>
+            </tr>
+        </thead>
+        <tbody id="tb">
+            <tr>
+                <td id="name2"></td>
+                <td id="hindi2"></td>
+                <td id="eng2"></td>
+                <td id="math2"></td>
+                <td id="total"></td>
+                <td id="per"></td>
+            </tr>
+            </tbody>
+          </table>
+    </div>
+    <script>
+        var results=[];
+
+        
+      function submit() {
+        let result = {
+        name: "",
+        hindi: "",
+        eng: "",
+        math: "",
+        total: "",
+        percentage: "",
+      };
+         result.name = document.getElementById("name").value;
+        result.hindi = document.getElementById("hindi").value;
+        result.eng = document.getElementById("eng").value;
+        result.math = document.getElementById("math").value;
+      console.log('result', result) 
+      console.log('results', results) 
+
+      results.push(result);
+    //   results.map(result)
+      result.total = + result.hindi + +result.eng + +result.math;
+         result.percentage = result.total / 3;
+
+        let arr = [+result.hindi, +result.eng, +result.math];
+        let c = 0,
+          d = 0,
+          e = 0;
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] < 33) {
+            c++;
+          }
+          if (arr[i] >= 75) {
+            d++;
+          }
+          if (arr[i] < 0 || arr[i] > 100) {
+            e++;
+          }
+        }
+        if (e > 0) {
+          document.getElementById("total").innerHTML =
+            " please enter number between 1 to 100 ";
+        } else {
+          document.getElementById("name2").innerHTML = result.name;
+          document.getElementById("hindi2").innerHTML =result.hindi;
+          document.getElementById("eng2").innerHTML =result.eng;
+          document.getElementById("math2").innerHTML =result.math;
+
+          if (c == 0) {
+            if (d >= 1) {
+              document.getElementById("total").innerHTML =
+                 + result.total + " : pass with distinction";
+            } else {
+              document.getElementById("total").innerHTML =
+                 + result.total + " : pass";
+            }
+          } else if (c == 1) {
+            document.getElementById("total").innerHTML =
+               + result.total + " : supply";
+          } else {
+            document.getElementById("total").innerHTML =
+         result.total + "  : fail";
+          }
+          document.getElementById("per").innerHTML = result.percentage.toFixed(2) + "  %";
+        }
+      }
+      console.log('results', results) 
+    </script>
+  </body>
+</html>
